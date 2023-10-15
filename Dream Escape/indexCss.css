@@ -1,0 +1,42 @@
+#{
+	margin:0;
+	padding:0;
+}
+body{background-image:url("img/微信图片_20231014214818.jpg");
+	background-size: 100%
+	font-family:"Arial";
+	line-height:35px;font-size:20px;margin-left:10px;
+	}
+.box{
+	width:800px;
+	margin:0 auto;
+	background-color: rgba(white, white, white, 1.0);
+	padding:10px 0;
+	}
+	.useImgBox{
+		width:50px;
+		height:50px;
+		border-radius:15px;
+		overflow:hidden;
+		margin-left:15px
+	}
+	.useImgBox img{
+		width:50px;
+	}
+	.titleBox{
+		width:1000px;
+		border-left:5px solid;
+		border-bottom:2px solid;
+		paddimg-left:6px;
+		margin-left:20px;
+		font-family:"Stencil"; font-size: 40px;
+	}
+
+
+
+    /* 设置 iframe 样式 */
+    iframe {
+            width: 600px;
+            height: 600px;
+			margin-left:300px
+        }

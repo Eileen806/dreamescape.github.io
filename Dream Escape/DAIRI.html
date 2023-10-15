@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Dream Escape</title>
+		<link rel="stylesheet" href="./indexCss.css">
+	</head>
+	<body>
+		<div class"box">
+			<table border="0" cellspacing="10" cellpadding="0">
+				<tr>
+					<td width="550px">
+						<div class="useImgBox">
+							<img src="img/微信图片_20231014204453.jpg"alt="">
+						</div>
+					</td>
+					<td width="160px"><a href="./Dreame.scape.html">Laman Utama</a></td>
+					<td width="180px"><a href="./pengenalan stres.html">Pengenalan Stres</a></td>
+					<td width="200px"><a href="./Cara mengatasi.html">Cara engatasi Stres</a></td>
+					<td width="80px"><a href="./mini game.html">Mini Game</a></td>
+					<td width="150px"><a href="./DAIRI.html">Perkongsian Cerita</a></td>
+				</tr>
+        </table>
+        <hr size="2" color="#cccccc">
+        <div class="titleBox">
+            PERKONGSIAN CERITA
+        </div>
+
+        <!-- 投稿和奖励部分 -->
+        <section>
+            <h2>投稿</h2>
+            <form id="submission-form">
+                <label for="submission">SHARE CERITA/ PENGALAMAN ANDA：</label><br>
+                <textarea id="submission" rows="6" cols="80" required></textarea><br>
+                <button type="submit">SUBMIT</button><br>
+            </form>
+        </section>
+
+        <section id="outcome" style="display: none;">
+            <h2>投稿完成-Submission done!</h2>
+            <p>Choose one suprise below：</p>
+            <button id="music-option">Music</button>
+            <button id="encouragement-option">Inspirational quotes</button>
+        </section>
+
+        <audio id="music" style="display: none">
+            <!-- 添加您的音乐文件 -->
+            <source src="music/按下暂停键.mp3" type="audio/mpeg">
+			<source src="music/Komorebi (1).mp3" type="audio/mpeg">
+			<source src="music/windy hill (1).mp3" type="audio/mpeg">
+			<source src="music/只要有想见的人就不是孤身一人.mp3" type="audio/mpeg">
+			<source src="music/legend never die (1).mp3" type="audio/mpeg">
+        </audio>
+
+        <p id="encouragement-text" style="display: none"></p>
+
+        <section>
+            <h2>REKOD</h2>
+            <ul id="submission-record">
+                <!-- 投稿记录将在此显示 -->
+            </ul>
+        </section>
+
+        <footer>
+            
+            <br>
+            <br>
+            <p>&copy; 2023 PERONGSIAN MAKLUMAT</p>
+            <p>Jika terdapat masalah boleh jumpa dengan guru kaunselor sekolah.<br>
+            Berikut adalah link bagi Ujian DASS, kalau berminat boleh tekan link bawah dan cuba menjawab,Tq.<br>
+            <p><a href="https://mentari.moh.gov.my/app/Modules/Patient/public-dass/">UJIAN DASS</a></p>
+        </footer>
+
+        <script>
+            // 投稿记录数组
+            const submissionRecord = [];
+
+            // 音乐播放状态
+            let isMusicPlaying = false;
+			
+			document.getElementById("music-option").addEventListener("click", function() {
+			    if (!isMusicPlaying) {
+			        // 播放纯音乐
+			        document.getElementById("music").play();
+			        isMusicPlaying = true;
+			        
+			        // 禁用激励句子选项
+			        document.getElementById("encouragement-option").disabled = true;
+			    }
+			});
+
+            document.getElementById("submission-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                // 获取投稿内容
+                const submissionContent = document.getElementById("submission").value;
+
+                // 记录投稿内容
+                submissionRecord.push(submissionContent);
+
+                // 更新投稿记录列表
+                const submissionList = document.getElementById("submission-record");
+                const newSubmissionItem = document.createElement("li");
+                newSubmissionItem.textContent = submissionContent;
+                submissionList.appendChild(newSubmissionItem);
+
+                // 隐藏表单并显示奖励选项
+                document.getElementById("submission-form").style.display = "none";
+                document.getElementById("outcome").style.display = "block";
+            });
+
+            document.getElementById("music-option").addEventListener("click", function() {
+                if (!isMusicPlaying) {
+                    // 播放纯音乐
+                    document.getElementById("music").play();
+                    isMusicPlaying = true;
+                } else {
+                    // 停止音乐
+                    document.getElementById("music").pause();
+                    isMusicPlaying = false;
+                }
+            });
+			// 音乐文件列表
+			const musicFiles = [
+			    "music/按下暂停键.mp3",
+			    "music/Komorebi (1).mp3",
+			    "music/windy hill (1).mp3",
+			    "music/只要有想见的人就不是孤身一人.mp3",
+			    "music/legend never die (1).mp3"
+			];
+			
+			document.getElementById("music-option").addEventListener("click", function() {
+			    // 随机选择一个音乐文件
+			    const randomIndex = Math.floor(Math.random() * musicFiles.length);
+			    const randomMusicFile = musicFiles[randomIndex];
+			    
+			    // 设置音乐源并播放
+			    document.getElementById("music").src = randomMusicFile;
+			    document.getElementById("music").play();
+			    isMusicPlaying = true;
+			});
+
+            document.getElementById("encouragement-option").addEventListener("click", function() {
+                // 随机触发激励句子
+                const encouragementSentences = [
+                    "您很棒！",
+                    "YOU ARE THE BEST!",
+                    "坚持下去！",
+                    "YOU CAN DO IT!",
+                    "相信自己！",
+                    "BELIEVE IN YOURSELF!",
+                    "WISH YOU HAVE A NICE DAY!"
+                    // 添加更多句子
+                ];
+                const randomSentence = encouragementSentences[Math.floor(Math.random() * encouragementSentences.length)];
+                document.getElementById("encouragement-text").textContent = randomSentence;
+                document.getElementById("encouragement-text").style.display = "block";
+				// 禁用音乐选项
+				    document.getElementById("music-option").disabled = true;
+            });
+        </script>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
